@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Does giving students ChatGPT access help them learn?</title>
+<style>
+  :root{
+    --paper:#FBFAF7;
+    --ink:#181816;
+    --muted:#5c584f;
+    --accent:#22503f;      /* pine */
+    --harm:#a8432e;         /* brick */
+    --line:#e5e2da;
+    --serif: "Iowan Old Style","Palatino Linotype",Palatino,Charter,Georgia,"Times New Roman",serif;
+    --sans: system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--serif);
+    line-height:1.62;
+    font-size:19px;
+  }
+  .wrap{max-width:680px;margin:0 auto;padding:56px 26px 80px}
+  .meta{
+    font-family:var(--sans);
+    font-size:13.5px;
+    letter-spacing:.01em;
+    color:var(--muted);
+    margin:0 0 30px;
+  }
+  h1{
+    font-family:var(--sans);
+    font-weight:600;
+    font-size:33px;
+    line-height:1.16;
+    letter-spacing:-.015em;
+    margin:0 0 14px;
+  }
+  .deck{
+    font-size:20px;
+    color:var(--muted);
+    margin:0 0 40px;
+    max-width:34em;
+  }
+
+  /* hero contrast */
+  .hero{
+    display:flex;
+    gap:22px;
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    padding:28px 0 30px;
+    margin:0 0 44px;
+  }
+  .stat{flex:1 1 0;min-width:0}
+  .stat .num{
+    font-family:var(--sans);
+    font-weight:650;
+    font-size:46px;
+    line-height:1;
+    letter-spacing:-.02em;
+  }
+  .stat.up .num{color:var(--accent)}
+  .stat.down .num{color:var(--harm)}
+  .stat .cap{
+    font-size:16px;
+    color:var(--muted);
+    margin-top:12px;
+    line-height:1.45;
+  }
+  .hero-note{
+    font-family:var(--sans);
+    font-size:13px;
+    color:var(--muted);
+    margin:16px 0 0;
+  }
+
+  h2{
+    font-family:var(--sans);
+    font-weight:600;
+    font-size:16px;
+    letter-spacing:.005em;
+    margin:44px 0 10px;
+    color:var(--accent);
+  }
+  p{margin:0 0 18px}
+  .lede{margin-top:0}
+
+  ul{margin:0 0 18px;padding-left:1.15em}
+  li{margin:0 0 10px}
+
+  a{color:var(--accent);text-underline-offset:2px}
+  a:hover{color:var(--harm)}
+
+  .sources{font-size:16.5px;line-height:1.5}
+  .sources li{margin-bottom:12px}
+  .sources .who{color:var(--ink)}
+  .sources .where{color:var(--muted);font-style:italic}
+
+  .team{
+    font-family:var(--sans);
+    font-size:15px;
+    color:var(--muted);
+    border-top:1px solid var(--line);
+    margin-top:46px;
+    padding-top:20px;
+  }
+  .team strong{color:var(--ink);font-weight:600}
+
+  @media (max-width:520px){
+    body{font-size:18px}
+    h1{font-size:27px}
+    .hero{flex-direction:column;gap:24px}
+    .stat .num{font-size:40px}
+  }
+  @media print{
+    body{background:#fff}
+    a{color:var(--ink);text-decoration:underline}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <p class="meta">Practical Minimum (Git/Docker/CLI), autumn 2026 — AI in Education</p>
+
+  <h1>Does giving students ChatGPT access help them learn?</h1>
+  <p class="deck">It depends entirely on how they use it. The same tool can lift your scores today and leave you weaker tomorrow.</p>
+
+  <div class="hero">
+    <div class="stat up">
+      <div class="num">+48%</div>
+      <div class="cap">better on practice problems, while working with a plain ChatGPT-style tutor</div>
+    </div>
+    <div class="stat down">
+      <div class="num">&minus;17%</div>
+      <div class="cap">worse on the later exam with no AI, than students who never had it at all</div>
+    </div>
+  </div>
+  <p class="hero-note" style="margin-top:-30px">Same students, both numbers. From a trial of nearly 1,000 high-schoolers (Bastani et al., PNAS 2025).</p>
+
+  <h2>What the research found</h2>
+  <p class="lede">The clearest evidence comes from a controlled experiment with almost 1,000 high-school maths students. Researchers split them into three groups: one got a plain ChatGPT interface, one got a tutor version built to give hints instead of answers, and one got no AI. Both AI groups did far better during practice. Then everyone sat an exam with no AI. The plain-ChatGPT group scored 17% below the no-AI group. The tutor group showed no such drop. The authors describe the plain-AI use as a "crutch": lean on it to get through practice, and the skill never forms.</p>
+
+  <p>A second study looked at what happens in the brain. At the MIT Media Lab, 54 people wrote essays either with ChatGPT, with a search engine, or with nothing, while an EEG recorded their brain activity. The ChatGPT writers showed the weakest brain connectivity, recalled less of what they had just written, and produced more look-alike, generic essays. The order of use mattered. People who wrote first on their own and only then brought in AI stayed sharper than people who reached for the model from the start.</p>
+
+  <p>Zoom out and the picture is not all bleak. A meta-analysis pooling 37 experiments found that, on average, ChatGPT has a moderately positive effect on academic achievement (Hedges' g of about 0.58). So it does tend to help. How much depends on when in the process it shows up and what kind of task it is asked to do.</p>
+
+  <h2>What we make of it</h2>
+  <p>Performance and learning are two different things, and AI blurs the line between them. It raises performance straight away, because it does part of the work with you. Learning is only what is left once the AI is gone. The plain-ChatGPT students looked strong in practice and then could not repeat it alone, because the model had quietly taken over the one part that builds the skill: the struggle of working it out. When it hints instead of answering, or arrives after you have already thought, the struggle stays yours and the learning holds.</p>
+
+  <h2>How to use AI so it actually helps you study</h2>
+  <ul>
+    <li>Attempt the problem yourself first, then bring in AI to check your work or unstick you. Brain-first beat AI-first in the MIT study.</li>
+    <li>Ask it to explain the idea and to quiz you, not to hand over the finished answer. The hint-giving tutor group kept their skills.</li>
+    <li>After it helps, close the chat and redo the thing alone. If you cannot, you rented the answer instead of learning it.</li>
+    <li>Check what it tells you. It states wrong things confidently, and you only catch that if you know the material yourself.</li>
+  </ul>
+
+  <h2>Sources</h2>
+  <ul class="sources">
+    <li><span class="who">Bastani, H. et al. "Generative AI without guardrails can harm learning: Evidence from high school mathematics."</span> <span class="where">PNAS, 2025.</span><br>
+      <a href="https://www.pnas.org/doi/10.1073/pnas.2422633122">pnas.org/doi/10.1073/pnas.2422633122</a>
+      &nbsp;·&nbsp; <a href="https://knowledge.wharton.upenn.edu/article/without-guardrails-generative-ai-can-harm-education/">plain-English summary (Wharton)</a></li>
+    <li><span class="who">Kosmyna, N. et al. "Your Brain on ChatGPT: Accumulation of Cognitive Debt when Using an AI Assistant for Essay Writing."</span> <span class="where">MIT Media Lab, 2025.</span><br>
+      <a href="https://arxiv.org/abs/2506.08872">arxiv.org/abs/2506.08872</a></li>
+    <li><span class="who">Liu, Z. et al. "The Impact of ChatGPT on Students' Academic Achievement: A Meta-Analysis."</span> <span class="where">Journal of Computer Assisted Learning, 2025.</span><br>
+      <a href="https://onlinelibrary.wiley.com/doi/10.1111/jcal.70096">onlinelibrary.wiley.com/doi/10.1111/jcal.70096</a></li>
+  </ul>
+
+  <p class="team"><strong>Team:</strong> Aashish Panthi</p>
+
+</div>
+</body>
+</html>
