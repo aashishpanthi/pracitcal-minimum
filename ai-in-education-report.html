@@ -1,0 +1,438 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Does giving students ChatGPT access help them learn?</title>
+    <style>
+      :root {
+        --paper: #e7ecff;
+        --ink: #111;
+        --muted: #333;
+        --accent: #4169e1; /* royal blue */
+        --harm: #dc143c; /* crimson */
+        --line: #111;
+        --serif: "Times New Roman", Times, serif;
+        --sans: "Times New Roman", Times, serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        -webkit-text-size-adjust: 100%;
+      }
+      body {
+        margin: 0;
+        background: var(--paper);
+        background-image:
+          linear-gradient(#dc143c12 1px, transparent 1px),
+          linear-gradient(90deg, #dc143c12 1px, transparent 1px);
+        background-size: 28px 28px;
+        color: var(--ink);
+        font-family: var(--serif);
+        line-height: 1.62;
+        font-size: 19px;
+      }
+
+      .wrap {
+        max-width: 850px;
+        margin: 0 auto;
+        padding: 56px 26px 80px;
+      }
+
+      .meta {
+        font-family: var(--sans);
+        font-size: 14px;
+        letter-spacing: 0.01em;
+        color: var(--muted);
+        margin: 0 0 30px;
+      }
+
+      h1 {
+        font-family: var(--sans);
+        font-weight: 800;
+        font-size: 33px;
+        line-height: 1.16;
+        letter-spacing: -0.015em;
+        margin: 0 0 22px;
+        padding: 18px;
+        background: var(--accent);
+        color: #fff;
+        border: 3px solid var(--ink);
+        box-shadow: 7px 7px 0 var(--harm);
+      }
+
+      .deck {
+        font-size: 24px;
+        font-style: italic;
+        color: var(--muted);
+        margin: 0 0 24px;
+        max-width: 34em;
+        padding: 10px 16px;
+        background: #fff;
+        border-left: 6px solid var(--harm);
+      }
+      .author {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin: 0 0 40px;
+      }
+      .avatar {
+        width: 52px;
+        height: 52px;
+        display: grid;
+        place-items: center;
+        flex: 0 0 auto;
+        background: var(--harm);
+        color: #fff;
+        border: 3px solid var(--ink);
+        box-shadow: 4px 4px 0 var(--ink);
+        font-weight: bold;
+      }
+      .author strong,
+      .author span {
+        display: block;
+      }
+      .author strong {
+        font-size: 18px;
+      }
+      .author span {
+        font-size: 14px;
+        color: var(--muted);
+      }
+
+      /* hero contrast */
+      .hero {
+        display: flex;
+        gap: 22px;
+        padding: 10px 0 30px;
+        margin: 0 0 44px;
+      }
+      .stat {
+        flex: 1 1 0;
+        min-width: 0;
+        padding: 20px;
+        border: 3px solid var(--ink);
+        box-shadow: 6px 6px 0 var(--ink);
+      }
+      .stat.up {
+        background: var(--accent);
+        color: #fff;
+      }
+      .stat.down {
+        background: var(--harm);
+        color: #fff;
+      }
+      .stat .num {
+        font-family: var(--sans);
+        font-weight: 650;
+        font-size: 46px;
+        line-height: 1;
+        letter-spacing: -0.02em;
+      }
+      .stat.up .num,
+      .stat.down .num {
+        color: #fff;
+      }
+      .bar {
+        height: 7px;
+        border-radius: 5px;
+        margin-top: 12px;
+        background: currentColor;
+      }
+      .up .bar {
+        width: 100%;
+        color: #fff;
+      }
+      .down .bar {
+        width: 35%;
+        color: #fff;
+      }
+      .stat .cap {
+        font-size: 16px;
+        color: inherit;
+        margin-top: 12px;
+        line-height: 1.45;
+      }
+      .hero-note {
+        font-family: var(--sans);
+        font-size: 13px;
+        color: var(--muted);
+        margin: 16px 0 0;
+      }
+      .study-size {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px 18px;
+        color: var(--muted);
+        font-size: 16px;
+        margin: 0 0 18px;
+      }
+      .study-size span {
+        white-space: nowrap;
+      }
+      .study-size span {
+        padding: 5px 10px;
+        color: #fff;
+        background: var(--harm);
+        border: 2px solid var(--ink);
+        box-shadow: 3px 3px 0 var(--ink);
+      }
+      .study-size span:nth-child(2) {
+        background: var(--accent);
+      }
+
+      h2 {
+        font-family: var(--sans);
+        font-weight: 800;
+        font-size: 16px;
+        letter-spacing: 0.005em;
+        margin: 44px 0 18px;
+        padding: 6px 12px;
+        width: max-content;
+        max-width: 100%;
+        color: #fff;
+        background: var(--accent);
+        border: 2px solid var(--ink);
+        box-shadow: 4px 4px 0 var(--harm);
+      }
+      p {
+        margin: 0 0 18px;
+      }
+      .lede {
+        margin-top: 0;
+      }
+      .highlight {
+        background: linear-gradient(transparent 48%, #fffaa3 48%, #bbffc6 88%, transparent 88%);
+   
+        padding: 0 0.08em;
+        font-weight: bold;
+      }
+
+      ul {
+        margin: 0 0 18px;
+        padding-left: 1.15em;
+      }
+      li {
+        margin: 0 0 25px;
+      }
+
+      a {
+        color: var(--accent);
+        font-weight: bold;
+        text-underline-offset: 3px;
+      }
+      a:hover {
+        color: var(--harm);
+      }
+
+      .sources {
+        font-size: 16.5px;
+        line-height: 1.5;
+      }
+      .sources li {
+        margin-bottom: 12px;
+      }
+      .sources .who {
+        color: var(--ink);
+      }
+      .sources .where {
+        color: var(--muted);
+        font-style: italic;
+      }
+
+      .team {
+        font-family: var(--sans);
+        font-size: 15px;
+        color: var(--muted);
+        border-top: 3px solid var(--line);
+        margin-top: 46px;
+        padding-top: 20px;
+      }
+      .team strong {
+        color: var(--ink);
+        font-weight: 600;
+      }
+
+      @media (max-width: 520px) {
+        body {
+          font-size: 18px;
+        }
+        h1 {
+          font-size: 27px;
+        }
+        .hero {
+          flex-direction: column;
+          gap: 24px;
+        }
+        .stat .num {
+          font-size: 40px;
+        }
+      }
+      @media print {
+        body {
+          background: #fff;
+        }
+        a {
+          color: var(--ink);
+          text-decoration: underline;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <h1>
+        What happens to learning outcomes when students are given access to
+        ChatGPT?
+      </h1>
+      <blockquote class="deck">
+        Short answer: It depends entirely on how and when students use it.
+      </blockquote>
+      <div class="author">
+        <div class="avatar" aria-hidden="true">AP</div>
+        <div>
+          <strong>Aashish Panthi</strong>
+          <span>September 12, 2026 · 3 min read</span>
+        </div>
+      </div>
+
+      <hr />
+
+      <p>
+        Few days ago, I came across a viral video where a middle school student
+        did his homework using AI tool. He used differentiation to solve simple
+        mathematical solutions. A grade 7 student in Nepal isn't taught calculus
+        so a genuine question arises, "Are students really learning when they
+        have access to AI?"
+      </p>
+
+      <p>
+        Similarly, a article published on USC Today mentions that from a survey
+        of 1,000 U.S. college students, they found that most use AI for seeking
+        fast solutions with minimal effort.
+        <strong>
+          So, here is my answer to "Is ChatGPT helping students learn?"
+        </strong>
+      </p>
+
+      <h2>Key Takeaways:</h2>
+
+
+      <ul class="lede">
+      <li>
+        In a controlled experiment with almost
+        1,000 high-school maths students, researchers split them into three
+        groups: one got a plain ChatGPT interface, one got a tutor version built
+        to give hints instead of answers, and one got no AI. Both AI groups did
+        far better during practice. Then everyone sat an exam with no AI. The
+        <span class="highlight">plain-ChatGPT group scored 17% below the no-AI group.</span> The tutor group
+        showed no such drop. The authors describe the plain-AI use as a
+        "crutch": lean on it to get through practice, and the skill never forms.
+      </li>
+
+      <li>
+
+        In an MIT Media Lab study, 54 participants wrote essays either with ChatGPT, with a search engine,
+        or with nothing, while an EEG recorded their brain activity.
+          <span class="highlight">The ChatGPT writers showed the weakest brain connectivity</span>, recalled less of what
+          they had just written, and produced more look-alike essays. Participants who wrote first on their own and only then
+          brought in AI stayed sharper than people who relied for the model from
+          the start.
+      </li>
+
+      <li>
+        A meta-analysis pooling 37
+        experiments found that, on average, ChatGPT has a moderately positive
+        effect on academic achievement (Hedges' g of about 0.58). So it does
+        help. How much depends on when in the process it shows up and
+        what kind of task it is asked to do.
+      </li>
+
+
+      </ul>
+
+      <h2>My summary</h2>
+      <p>
+        Performance and learning are two different things. Use of AI raises performance straight away, because it does parts
+        of the work with students. 
+        
+        Learning happens when we struggle. Like in the experiment, the plain-ChatGPT students looked strong in practice and then could not
+        repeat it without ChatGPT, because the model was working for them, students didn't struggle. However, when AI's help is taken after you have already thought, the
+        struggle stays and your learning holds, which is effective.
+      </p>
+
+      <h2>How to use AI so it actually helps you study</h2>
+      <ul>
+        <li>
+          First attempt the problem yourself, then bring in AI to check your
+          work. Like checking grammar and getting feedback. Supported by MIT study.
+        </li>
+        <li>
+          Ask it to explain the idea and to quiz you, not to hand over the
+          finished answer. After getting help, close the chat and redo the thing yourself. 
+        </li>
+        <li>
+          AI gives you wrong answers confidently, and you
+          only catch that if you know the material yourself. So, please check.
+        </li>
+      </ul>
+
+      <h2>Sources</h2>
+      <ul class="sources">
+        <li>
+          <span class="who"
+            >Bastani, H. et al. "Generative AI without guardrails can harm
+            learning: Evidence from high school mathematics."</span
+          >
+          <span class="where">PNAS, 2025.</span><br />
+          <a href="https://www.pnas.org/doi/10.1073/pnas.2422633122"
+            >pnas.org/doi/10.1073/pnas.2422633122</a
+          >
+          &nbsp;·&nbsp;
+          <a
+            href="https://knowledge.wharton.upenn.edu/article/without-guardrails-generative-ai-can-harm-education/"
+            >plain-English summary (Wharton)</a
+          >
+        </li>
+        <li>
+          <span class="who"
+            >Kosmyna, N. et al. "Your Brain on ChatGPT: Accumulation of
+            Cognitive Debt when Using an AI Assistant for Essay Writing."</span
+          >
+          <span class="where">MIT Media Lab, 2025.</span><br />
+          <a href="https://arxiv.org/abs/2506.08872"
+            >arxiv.org/abs/2506.08872</a
+          >
+        </li>
+        <li>
+          <span class="who"
+            >Liu, Z. et al. "The Impact of ChatGPT on Students' Academic
+            Achievement: A Meta-Analysis."</span
+          >
+          <span class="where">Journal of Computer Assisted Learning, 2025.</span
+          ><br />
+          <a href="https://onlinelibrary.wiley.com/doi/10.1111/jcal.70096"
+            >onlinelibrary.wiley.com/doi/10.1111/jcal.70096</a
+          >
+        </li>
+        <li>
+          <span class="who"
+            >McQuiston, P. "AI is changing how students learn — or avoid
+            learning."</span
+          >
+          <span class="where">USC Today, 2025.</span><br />
+          <a
+            href="https://today.usc.edu/ai-is-changing-how-students-learn-or-avoid-learning/"
+            >today.usc.edu/ai-is-changing-how-students-learn-or-avoid-learning</a
+          >
+        </li>
+      </ul>
+
+      <p class="team"><strong>Submitted by:</strong> Aashish Panthi</p>
+
+    </div>
+  </body>
+</html>
